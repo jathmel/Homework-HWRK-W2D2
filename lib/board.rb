@@ -20,9 +20,12 @@ class Board
   end
 
   def valid_move?(start_pos)
+    raise "Invalid starting cup" if start_pos < 0 || start_pos > 12
+    raise "Invalid starting cup" if @cups[start_pos].empty?
   end
 
   def make_move(start_pos, current_player_name)
+
   end
 
   def next_turn(ending_cup_idx)
@@ -38,8 +41,21 @@ class Board
   end
 
   def one_side_empty?
+    player1_side = @cups[0..5]
+    player2_side = @cups[7..12]
+    player1_side.all?(:empty?) || player2_side.all?(:empty?)
   end
 
   def winner
+    p1_total = @cups[6].count
+    p2_total = @cups[13].count
+    case p1_total <=> p2_total
+    when -1
+      @name2
+    when 0
+      :draw
+    when 1
+      @name1
+    end
   end
 end
