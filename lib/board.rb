@@ -7,7 +7,6 @@ class Board
     @cups = Array.new(14) {Array.new}
     place_stones
 
-
   end
 
   def place_stones
@@ -15,7 +14,7 @@ class Board
     @cups.each_with_index do |cup, idx|
       next if idx == 6 || idx == 13
       4.times do
-        cup <<  "stone"
+        cup <<  :stone
       end
     end
   end
